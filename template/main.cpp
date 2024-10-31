@@ -1,6 +1,7 @@
 
 #include <iostream>
-
+#include <string>
+#include <fstream>
 using namespace std;
 
 class Matrix {
@@ -48,7 +49,34 @@ public:
 
 void read_matrix_from_file(const string& file_name, Matrix& matrix_1, Matrix& matrix_2) {
     // TODO: Read matrix data from the file
-    //    Make sure to handle potential errors and invalid input
+    // Make sure to handle potential errors and invalid input
+
+    // read in initial file
+    ifstream file(file_name); 
+
+    // get size of matrices
+    string line;
+    int count;
+    while(getline(file, line)) {
+        count++;
+    }
+    matrix_1.matrix_size = matrix_2.matrix_size = count/2; 
+
+    // read in matrix 1
+    string matrix1[matrix_1.matrix_size];
+    for (int i = 0; i < matrix_1.matrix_size; i++) {
+        string line;
+        getline(file, line);
+        string row[matrix_1.matrix_size];
+        for (int j = 0; j < matrix_1.matrix_size; j++) {
+            row[j] = line[j];
+        }
+        matrix1[i] = row[i];
+    }
+    
+    matrix_1.matrix_data = matrix1;
+
+    file.close();
 }
 
 void print_matrix(const Matrix& matrix) {
