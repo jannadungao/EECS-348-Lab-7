@@ -34,16 +34,25 @@ public:
 
   // 3. Add two matrices (operator overloading for +)
   Matrix operator+(const Matrix& other) {
-    Matrix matrix[SIZE][SIZE];
+    Matrix matrix;
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            matrix[i][j] = 
+            matrix.data[i][j] = data[i][j] + other.data[i][j];
         }
     }
+    return matrix;
   }
 
   // 4. Multiply two matrices (operator overloading for *)
-  Matrix operator*(const Matrix& other) const;
+  Matrix operator*(const Matrix& other) {
+    Matrix matrix;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            matrix.data[i][j] = data[i][j] * other.data[i][j];
+        }
+    }
+    return matrix;
+  }
 
   // 5. Compute the sum of matrix diagonal elements
   int sumOfDiagonals() const;
