@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 const int SIZE = 4; // Global variable for matrix size
@@ -13,10 +14,16 @@ public:
   void readFromStdin() {
     string matrix;
     cin >> matrix;
+    stringstream ss(matrix);
+
     // loop for 4 x 4 matrix
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            data[i][j] = (int) matrix[j];
+            string num;
+            ss >> matrix;
+            num = matrix;
+            int k = stoi(num);
+            data[i][j] = k;
         }
     }
   }
@@ -28,7 +35,7 @@ public:
         for (int j = 0; j < SIZE; j++) {
             row += (char) data[i][j];
         }
-        printf("%s", &row);
+        cout << row << endl;
     }
   }
 
@@ -48,7 +55,11 @@ public:
     Matrix matrix;
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            matrix.data[i][j] = data[i][j] * other.data[i][j];
+            int sum = 0;
+            for (int k = 0; k < SIZE; k++) {
+                sum += data[i][j] * other.data[j][i];
+            }
+            matrix.data[i][j] = sum;
         }
     }
     return matrix;
@@ -57,19 +68,24 @@ public:
   // 5. Compute the sum of matrix diagonal elements
   int sumOfDiagonals() {
     int sum = 0;
-    int j = 0;
     for(int i = 0; i < SIZE; i++) {
-        sum += data[i][j];
-        j++;
+        sum += data[i][i];
     }
     return sum;
   }
 
   // 6. Swap matrix rows
   void swapRows(int row1, int row2) {
-    int temp = row1;
-    row1 = row2;
-    row2 = temp;
+    int temp[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+        temp[i] = data[row1][i]; 
+    }
+    for (int j = 0; j < SIZE; j++) {
+        data[row1][j] = data[row2][j];
+    }
+    for (int k = 0; k < SIZE; k++) {
+        data[row2][k] = temp[k];
+    }
   }
 };
 
