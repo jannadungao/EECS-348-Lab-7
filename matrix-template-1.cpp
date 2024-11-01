@@ -1,6 +1,5 @@
-
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 const int SIZE = 4; // Global variable for matrix size
@@ -11,13 +10,37 @@ private:
 
 public:
   // 1. Read values from stdin into a matrix
-  void readFromStdin();
+  void readFromStdin() {
+    string matrix;
+    cin >> matrix;
+    // loop for 4 x 4 matrix
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            data[i][j] = (int) matrix[j];
+        }
+    }
+  }
 
   // 2. Display a matrix
-  void display() const;
+  void display() {
+    for (int i = 0; i < SIZE; i++) {
+        string row;
+        for (int j = 0; j < SIZE; j++) {
+            row += (char) data[i][j];
+        }
+        printf("%s", &row);
+    }
+  }
 
   // 3. Add two matrices (operator overloading for +)
-  Matrix operator+(const Matrix& other) const;
+  Matrix operator+(const Matrix& other) {
+    Matrix matrix[SIZE][SIZE];
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            matrix[i][j] = 
+        }
+    }
+  }
 
   // 4. Multiply two matrices (operator overloading for *)
   Matrix operator*(const Matrix& other) const;
