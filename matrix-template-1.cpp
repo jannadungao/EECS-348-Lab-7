@@ -58,26 +58,45 @@ public:
   }
 
   // 5. Compute the sum of matrix diagonal elements
-  int sumOfDiagonals() {
-    int sum = 0;
+  void sumOfDiagonals() {
+    // compute sum of main diagonal
+    int main_sum = 0;
     for(int i = 0; i < SIZE; i++) {
-        sum += data[i][i];
+        main_sum += data[i][i];
     }
-    return sum;
+
+    // compute sum of secondary diagonal
+    int sec_sum = 0;
+    for (int j = SIZE - 1; j >= 0; j--) {
+        sec_sum += data[j][j];
+    }
+    stringstream ss;
+    ss << "Main Sum: " << main_sum << endl << "Secondary Sum: " << sec_sum;
+    string result = ss.str();
+    cout << result << endl;
   }
 
   // 6. Swap matrix rows
   void swapRows(int row1, int row2) {
-    int temp[SIZE];
-    for (int i = 0; i < SIZE; i++) {
-        temp[i] = data[row1][i]; 
+    // check if input is valid
+    if ((row1 >= 0 && row1 <= SIZE) && (row2 >= 0 && row2 <= SIZE) && (row1 != row2)) {
+        int temp[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            temp[i] = data[row1][i]; 
+        }
+        for (int j = 0; j < SIZE; j++) {
+            data[row1][j] = data[row2][j];
+        }
+        for (int k = 0; k < SIZE; k++) {
+            data[row2][k] = temp[k];
+        }
+        cout << "Matrix 1 after swapping rows:" << endl;
+    } else if (row1 == row2) {
+        cout << "Cannot swap row with itself." << endl;
+    } else if ((row1 < 0) || (row1 > SIZE) || (row2 < 0) || (row2 > SIZE)) {
+        cout << "Invalid rows indices." << endl;
     }
-    for (int j = 0; j < SIZE; j++) {
-        data[row1][j] = data[row2][j];
-    }
-    for (int k = 0; k < SIZE; k++) {
-        data[row2][k] = temp[k];
-    }
+
   }
 };
 
@@ -103,10 +122,10 @@ int main() {
   cout << "Product of matrices:" << endl;
   product.display();
 
-  cout << "Sum of diagonals of Matrix 1: " << mat1.sumOfDiagonals() << endl;
+  cout << "Sum of diagonals of Matrix 1: " << endl;
+  mat1.sumOfDiagonals();
 
   mat1.swapRows(0, 2);
-  cout << "Matrix 1 after swapping rows:" << endl;
   mat1.display();
 
   return 0;
