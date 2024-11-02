@@ -12,18 +12,10 @@ private:
 public:
   // 1. Read values from stdin into a matrix
   void readFromStdin() {
-    string matrix;
-    cin >> matrix;
-    stringstream ss(matrix);
-
     // loop for 4 x 4 matrix
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            string num;
-            ss >> matrix;
-            num = matrix;
-            int k = stoi(num);
-            data[i][j] = k;
+            cin >> data[i][j];
         }
     }
   }
@@ -33,9 +25,9 @@ public:
     for (int i = 0; i < SIZE; i++) {
         string row;
         for (int j = 0; j < SIZE; j++) {
-            row += (char) data[i][j];
+            cout << data[i][j] << ' ';
         }
-        cout << row << endl;
+        cout << endl;
     }
   }
 
@@ -57,7 +49,7 @@ public:
         for (int j = 0; j < SIZE; j++) {
             int sum = 0;
             for (int k = 0; k < SIZE; k++) {
-                sum += data[i][j] * other.data[j][i];
+                sum += data[i][k] * other.data[k][j];
             }
             matrix.data[i][j] = sum;
         }
@@ -92,13 +84,13 @@ public:
 int main() {
   // Example usage:
   Matrix mat1;
-  cout << "Enter values for Matrix 1:" << endl;
+  cout << "Enter values for Matrix 1 (in one line with numbers separated by spaces):" << endl;
   mat1.readFromStdin();
   cout << "Matrix 1:" << endl;
   mat1.display();
 
   Matrix mat2;
-  cout << "Enter values for Matrix 2:" << endl;
+  cout << "Enter values for Matrix 2 (in one line with numbers separated by spaces):" << endl;
   mat2.readFromStdin();
   cout << "Matrix 2:" << endl;
   mat2.display();
