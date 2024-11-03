@@ -13,21 +13,20 @@ public:
   // 1. Read values from stdin into a matrix
   void readFromStdin() {
     // loop for 4 x 4 matrix
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            cin >> data[i][j];
+    for (int i = 0; i < SIZE; i++) { // row
+        for (int j = 0; j < SIZE; j++) { // column
+            cin >> data[i][j]; // save input to matrix
         }
     }
   }
 
   // 2. Display a matrix
   void display() {
-    for (int i = 0; i < SIZE; i++) {
-        string row;
-        for (int j = 0; j < SIZE; j++) {
-            cout << data[i][j] << ' ';
+    for (int i = 0; i < SIZE; i++) { // row
+        for (int j = 0; j < SIZE; j++) { // column
+            cout << data[i][j] << ' '; // print data in matrix
         }
-        cout << endl;
+        cout << endl; // new line after each row
     }
   }
 
@@ -49,7 +48,7 @@ public:
         for (int j = 0; j < SIZE; j++) {
             int sum = 0;
             for (int k = 0; k < SIZE; k++) {
-                sum += data[i][k] * other.data[k][j];
+                sum += data[i][k] * other.data[k][j]; // perform matrix multiplication
             }
             matrix.data[i][j] = sum;
         }
