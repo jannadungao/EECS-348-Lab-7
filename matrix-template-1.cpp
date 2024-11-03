@@ -80,21 +80,21 @@ public:
   void swapRows(int row1, int row2) {
     // check if input is valid
     if ((row1 >= 0 && row1 <= SIZE) && (row2 >= 0 && row2 <= SIZE) && (row1 != row2)) {
-        int temp[SIZE];
-        for (int i = 0; i < SIZE; i++) {
+        int temp[SIZE]; // temporary array to hold values in first row
+        for (int i = 0; i < SIZE; i++) { // temporarily hold values of first row
             temp[i] = data[row1][i]; 
         }
-        for (int j = 0; j < SIZE; j++) {
+        for (int j = 0; j < SIZE; j++) { // swap row2 and row1
             data[row1][j] = data[row2][j];
         }
-        for (int k = 0; k < SIZE; k++) {
+        for (int k = 0; k < SIZE; k++) { // assign values in temp (original row1) to row2 to complete swap
             data[row2][k] = temp[k];
         }
         cout << "Matrix 1 after swapping rows:" << endl;
     } else if (row1 == row2) {
-        cout << "Cannot swap row with itself." << endl;
+        cout << "Cannot swap row with itself.\nOriginal Matrix 1: " << endl;
     } else if ((row1 < 0) || (row1 > SIZE) || (row2 < 0) || (row2 > SIZE)) {
-        cout << "Invalid rows indices." << endl;
+        cout << "Invalid rows indices.\nOriginal Matrix 1: " << endl;
     }
 
   }
