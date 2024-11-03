@@ -71,9 +71,9 @@ public:
         sec_sum += data[j][j];
     }
     stringstream ss;
-    ss << "Main Sum: " << main_sum << endl << "Secondary Sum: " << sec_sum;
-    string result = ss.str();
-    cout << result << endl;
+    ss << "Main Sum: " << main_sum << endl << "Secondary Sum: " << sec_sum; // store string of sums
+    string result = ss.str(); // store string in result
+    cout << result << endl; // print resulting sums
   }
 
   // 6. Swap matrix rows
